@@ -93,29 +93,29 @@ public class ContabilidadUIA {
 
 
 		public ArrayList<ClienteJSP> getCompras(String clienteId) {
-			System.out.println("Estoy en ContabilidadUIA 0");
+			System.out.println("Estoy en ContabilidadUIA compras0");
 			this.clienteId = clienteId;
-			System.out.println("Estoy en ContabilidadUIA 1");
+			System.out.println("Estoy en ContabilidadUIA compras1");
 			proveedor = (Proveedor) this.gestorProveedores.busca(clienteId);
-			System.out.println("Estoy en ContabilidadUIA 2");
+			System.out.println("Estoy en ContabilidadUIA compras2");
 			listaCompras = proveedor.getLista();
-			System.out.println("Estoy en ContabilidadUIA 3");
+			System.out.println("Estoy en ContabilidadUIA compras3");
 			this.getCuentas(clienteId);
-			System.out.println("Estoy en ContabilidadUIA 4");
+			System.out.println("Estoy en ContabilidadUIA compras4");
 			System.out.println  ("dao|getCompras");
 			return listaCompras;
 		}
 		
 		public ArrayList<ClienteJSP> getCheques(String clienteId) {
-			System.out.println("Estoy en ContabilidadUIA 0");
+			System.out.println("Estoy en ContabilidadUIA cheques0");
 			this.clienteId = clienteId;
-			System.out.println("Estoy en ContabilidadUIA 1");
+			System.out.println("Estoy en ContabilidadUIA cheques1");
 			proveedor = (Proveedor) this.gestorProveedores.busca(clienteId);
-			System.out.println("Estoy en ContabilidadUIA 2");
+			System.out.println("Estoy en ContabilidadUIA cheques2");
 			listaCheques = proveedor.getListaCheques();
-			System.out.println("Estoy en ContabilidadUIA 3");
+			System.out.println("Estoy en ContabilidadUIA cheques3");
 			this.getCuentas(clienteId);
-			System.out.println("Estoy en ContabilidadUIA 4");
+			System.out.println("Estoy en ContabilidadUIA cheques4");
 			System.out.println  ("dao|getCheques");
 			return listaCheques;
 		}

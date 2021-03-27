@@ -46,6 +46,7 @@ public class Proveedor extends InfoUIA
 	
 	public ArrayList<ClienteJSP> getLista() 
 	{
+		System.out.println("----- Clientes -----");
 		ClienteJSP cliente = null;
 		
 		if(listaJSP != null)
@@ -68,9 +69,47 @@ public class Proveedor extends InfoUIA
 		return listaJSP;
 	}
 
+	public ArrayList<ClienteJSP> getListaCheques() 
+	{
+		System.out.println("----- Cheques-----");
+		ClienteJSP cliente = null;
+		
+		if(listaJSP != null)
+		{		
+			listaJSP = new ArrayList<ClienteJSP>();
+		}
+		
+		if (this.items != null) 
+		{        
+			System.out.println("----- ListaC -----");
+			
+            items.forEach(t->{
+    			if(t.getItems() != null)
+    			{
+    				t.getItems().forEach(p->
+    				{
+    					p.getItems().forEach(c->
+        				{
+        					c.getItems().forEach(e->
+            				{
+        					((List<ClienteJSP>) listaJSP).add(e.getClienteJSP());
+            				});
+        				});	
+    				});
+    			}
+    		});
+		}
+		return listaJSP;
+	}
+	
+	
+	
+	
 	public ArrayList<ClienteJSP> getListaCuentas() 
 	{
+		System.out.println("----- Cuentas -----");
 		ClienteJSP cliente = null;
+		
 		
 		if(listaJSP != null)
 		{		
@@ -86,6 +125,7 @@ public class Proveedor extends InfoUIA
     			{
     				t.getItems().forEach(p->
     				{
+    					
     					((List<ClienteJSP>) listaJSP).add(p.getClienteJSP());
     				});
     			}
@@ -93,5 +133,6 @@ public class Proveedor extends InfoUIA
 		}
 		return listaJSP;
 	}
+	
 
 }

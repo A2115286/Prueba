@@ -31,7 +31,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		System.out.println("Home Page Requested, locale = " + locale);
+		System.out.println("HomeController Home Page Requested, locale = " + locale);
 		
 		model.addAttribute("clientes", getListaClientes());
 
@@ -41,6 +41,8 @@ public class HomeController {
 
 	@ModelAttribute("listaCLientes")
 	   public ArrayList<ClienteJSP> getListaClientes() {
+		System.out.println("**********************************");
+		System.out.println("HomeController getListaClientes");
 	      return this.dao.getListaProveedores();
 	   }
 

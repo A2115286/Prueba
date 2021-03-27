@@ -29,6 +29,7 @@ import main.java.uia.com.contabilidad.ContabilidadUIA;
 				@WebInitParam(name = "Nombre", value = "NA")
 		})
 public class ClienteController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
     private static String VER_COMPRA = "/verCompras.jsp";
     private static String VER_CUENTA = "/verCuentas.jsp";
@@ -37,10 +38,11 @@ public class ClienteController extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClienteController() {
+    public ClienteController() {    	
     	super();
     	Singleton singletonInstance = new Singleton();	
     	this.dao = singletonInstance.getInstance();
+    	
     }
 
 	/**
@@ -49,10 +51,12 @@ public class ClienteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 		// TODO Auto-generated method stub
 		 throws ServletException, IOException {
+				
 		        String forward="";
 		        String action = request.getParameter("action");
 		 
 		        if (action.equalsIgnoreCase("verCheque")){
+		        	
 		            String clienteId = request.getParameter("clienteName");
 		            dao.borraCliente(clienteId);
 		            forward = VER_CHEQUE;
@@ -60,7 +64,8 @@ public class ClienteController extends HttpServlet {
 		        } 
 		        else if (action.equalsIgnoreCase("verCompras"))
 		        {
-		            forward = VER_COMPRA;
+		        	
+		            forward = VER_COMPRA;		            
 		            String clienteId = request.getParameter("clienteName");
 		            ArrayList<ClienteJSP> compras = dao.getCompras(clienteId);
 		            request.setAttribute("cliente", clienteId);
@@ -68,7 +73,8 @@ public class ClienteController extends HttpServlet {
 		        } 
 		        else if (action.equalsIgnoreCase("verCuentas"))
 		        {
-		            forward = VER_CUENTA;
+		        	
+		        	forward = VER_CUENTA;
 		            String clienteId = request.getParameter("clienteName");
 		            request.setAttribute("cliente", clienteId);
 		            request.setAttribute("listaCompras", dao.getCompras(clienteId));
@@ -77,6 +83,7 @@ public class ClienteController extends HttpServlet {
 		        } 
 		        else if (action.equalsIgnoreCase("verCheques"))
 		        {
+		        	
 		            forward = VER_CHEQUE;
 		            String clienteId = request.getParameter("clienteName");
 		            ArrayList<ClienteJSP> cheques = dao.getCheques(clienteId);
@@ -84,12 +91,14 @@ public class ClienteController extends HttpServlet {
 		            request.setAttribute("listaCheques", cheques);
 		        } 
 		        else if (action.equalsIgnoreCase("listCliente")){
+		        	
 		            forward = VER_CHEQUE;
 		            request.setAttribute("clientes", dao.getAllClientes());
 		        } else {
+		        	
 		            forward = VER_COMPRA;
 		        }
-		 
+		       
 		        RequestDispatcher view = request.getRequestDispatcher(forward);
 		        view.forward(request, response);
 	}

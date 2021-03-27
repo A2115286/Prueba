@@ -61,7 +61,8 @@ public class CompraController extends HttpServlet {
 	}
 
 	private void verCompra(HttpServletRequest request, HttpServletResponse response) {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("verCompras.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("verCheques.jsp");
+		System.out.println("Estpy en CompraController");
         try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {

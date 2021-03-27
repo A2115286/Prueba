@@ -21,9 +21,9 @@ import main.java.uia.com.presentacion.ClienteJSP;
 import main.java.uia.com.presentacion.Singleton;
 
 
-
 @Controller
 public class ClientesController {
+	
 
 	 // Simply selects the home view to render by returning its name.
 	
@@ -33,14 +33,15 @@ public class ClientesController {
 	public String cargaCompras(@RequestParam String clienteName, 
 		      ModelMap model)
 	{
-		System.out.println("Pagina Compras solicitada, locale = ");
+		System.out.println("Clientes_Controller: Pagina Compras solicitada, locale = ");
 
 		this.dao.getCompras(clienteName);;
 		model.addAttribute("clientes", getListaClientes());
 		model.addAttribute("clienteActual", this.dao.clienteId);
 		model.addAttribute("compras", this.getListaCompras());
 		model.addAttribute("cuentas", this.getListaCuentas());
-		return "verCompras";
+		model.addAttribute("cheques", this.getListaCheques());
+		return "verCheques";
 	}
 
 
@@ -48,14 +49,37 @@ public class ClientesController {
 	public String cargaCuentas(@RequestParam String clienteName, 
 		      ModelMap model)
 	{
-		System.out.println("Pagina Compras solicitada, locale = ");
+		System.out.println("Clientes_Controller: Pagina Cuentas solicitada, locale = ");
 
-		this.dao.getCompras(clienteName);;
+		this.dao.getCuentas(clienteName);;
+		System.out.println("-clienteController-despues de dao ");
 		model.addAttribute("clientes", getListaClientes());
 		model.addAttribute("clienteActual", this.dao.clienteId);
 		model.addAttribute("compras", this.getListaCompras());
 		model.addAttribute("cuentas", this.getListaCuentas());
-		return "verCompras";
+		model.addAttribute("cheques", this.getListaCheques());
+		return "verCuentas";
+	}
+	
+	@RequestMapping(value = "/cheques", method = RequestMethod.GET)
+	public String cargaCheques(@RequestParam String clienteName, 
+		      ModelMap model)
+	{
+		System.out.println("Clientes_Controller: Pagina Cheques solicitada, locale = ");
+
+		this.dao.getCheques(clienteName);;
+		System.out.println("/cheques1");
+		model.addAttribute("clientes", getListaClientes());
+		System.out.println("/cheques2");
+		model.addAttribute("clienteActual", this.dao.clienteId);
+		System.out.println("/cheques3");
+		model.addAttribute("compras", this.getListaCompras());
+		System.out.println("/cheques4");
+		model.addAttribute("cuentas", this.getListaCuentas());
+		System.out.println("/cheques5");
+		model.addAttribute("cheques", this.getListaCheques());
+		System.out.println("/cheques6");
+		return "verCheques";
 	}
 	
 
@@ -64,7 +88,7 @@ public class ClientesController {
 		      ModelMap model)
 	{
 		
-		System.out.println("Pagina Compras solicitada, locale = ");
+		System.out.println("Clientes_Controller: Pagina Editar solicitada, locale = ");
 
 		this.dao.getCompras(clienteName);;
 		model.addAttribute("clientes", getListaClientes());
@@ -77,18 +101,31 @@ public class ClientesController {
 	
 
 	@ModelAttribute("listaCLientes")
-	   public ArrayList<ClienteJSP> getListaClientes() {
+	   public ArrayList<ClienteJSP> getListaClientes() {	
+		System.out.println("ClientesController: getListaClientes");
+		System.out.println("-");
 	      return this.dao.getListaProveedores();
 	   }
 	
 	@ModelAttribute("listaCompras")
 	   public ArrayList<ClienteJSP> getListaCompras() {
-	      return this.dao.getListaCompras();
+		System.out.println("ClientesController: getListaCompras");
+		System.out.println("-");
+	      return this.dao.getListaCompras();		
 	   }
 
 	@ModelAttribute("listaCuentas")
 	   public ArrayList<ClienteJSP> getListaCuentas() {
+		System.out.println("ClientesController: getListaCuentas");
+		System.out.println("-");
 	      return this.dao.getListaCuentas();
+	   }
+	
+	@ModelAttribute("listaCheques")
+	   public ArrayList<ClienteJSP> getListaCheques() {
+		System.out.println("ClientesController: getListaCheques");
+		System.out.println("-");
+	      return this.dao.getListaCheques();
 	   }
 	
 }
